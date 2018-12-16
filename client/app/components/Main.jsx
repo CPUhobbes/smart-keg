@@ -30,9 +30,9 @@ class Main extends React.Component {
     });
 
     return (
-      <div>
+      <React.Fragment>
         <Keg beer={beer} capacity={capacity} />
-      </div>
+      </React.Fragment>
     );
   }
 }

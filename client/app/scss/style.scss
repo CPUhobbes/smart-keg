@@ -7,9 +7,11 @@ body {
 .smart-keg {
   position: absolute;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   background-color: #000;
   color: #fff;
+  flex-direction: column;
+  display: flex;
 
   .smart-keg__header {
     border-bottom: #fff solid 1px;
@@ -86,14 +88,10 @@ body {
   }
 
   .smart-keg__login {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 
     .smart-keg__login--container {
     }
