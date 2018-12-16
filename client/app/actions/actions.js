@@ -1,5 +1,6 @@
 /* eslint no-underscore-dangle: ["error", { "allow": ["_loadAPI"] }] */
-
+import md5Hash from 'md5';
+import Immutable from 'immutable';
 import Types from './actionTypes';
 import api from '../helpers/helpers';
 
@@ -21,10 +22,49 @@ export function loadAPI() {
       });
 }
 
-export function updateLocation(location) {
-  console.log(location);
+export function updateSetting(key, value) {
   return {
-    type: Types.UPDATE_LOCATION,
-    location,
+    type: Types.UPDATE_SETTING,
+    key,
+    value,
+  };
+}
+
+export function onClickLogin(id, password) {
+  return async (dispatch) => {
+    const hashPassword = md5Hash(password);
+
+    const request = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username: id, password: hashPassword }),
+    };
+
+    const setting = {
+      id: '',
+      isLoggedIn: false,
+      failedLogin: false,
+      isAdmin: false,
+    };
+
+    await fetch('http://127.0.0.1:3000/login/validate', request)
+      .then(res => res.json())
+      .then((data) => {
+        if (data) {
+          setting.id = id;
+          setting.isLoggedIn = true;
+          setting.isAdmin = data.admin;
+        } else {
+          setting.failedLogin = true;
+        }
+      })
+      .catch(() => {
+        setting.failedLogin = true;
+      });
+
+    return dispatch(updateSetting('userSession', Immutable.fromJS(setting)));
   };
 }

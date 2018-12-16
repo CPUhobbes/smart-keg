@@ -7,6 +7,8 @@ const Mongoose = require('mongoose');
 const Promise = require('bluebird');
 const Path = require('path');
 const http = require('http').Server(app);
+const md5 = require('md5');
+const Users = require('./server/models/Users');
 
 /**
  * --- Mongoose ---
@@ -16,7 +18,10 @@ const http = require('http').Server(app);
 Mongoose.Promise = Promise;
 
 // mongoose.connect("mongodb://DBNAMEHERE");
-Mongoose.connect('mongodb://localhost/smart-keg', { useMongoClient: true });
+Mongoose.connect(
+  'mongodb://localhost/smart-keg',
+  { useMongoClient: true },
+);
 const db = Mongoose.connection;
 
 // Mongoose Error
@@ -29,6 +34,21 @@ db.once('open', () => {
   console.log('Mongoose connection successful.');
 });
 
+// Create default Admin account if no users
+Users.find().exec((err, results) => {
+  if (!results.length) {
+    const newUser = Users({
+      username: 'admin',
+      password: md5('admin'),
+      admin: true,
+    });
+
+    newUser.save((e) => {
+      if (err) throw e;
+      console.log('Default Admin Account Created!');
+    });
+  }
+});
 
 // Add Body Parser
 app.use(BodyParser.json());

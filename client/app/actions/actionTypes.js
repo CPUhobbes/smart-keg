@@ -1,6 +1,6 @@
 const actions = {
   LOAD_API: 'LOAD_API',
-  UPDATE_LOCATION: 'UPDATE_LOCATION',
+  UPDATE_SETTING: 'UPDATE_SETTING',
 };
 
 export default actions;

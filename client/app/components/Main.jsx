@@ -31,10 +31,7 @@ class Main extends React.Component {
 
     return (
       <div>
-        <Keg
-          beer={beer}
-          capacity={capacity}
-        />
+        <Keg beer={beer} capacity={capacity} />
       </div>
     );
   }
@@ -44,8 +41,9 @@ const mapStateToProps = state => ({
   settings: state.settings,
 });
 
-const mapDispatchToProps = dispatch => ({
-  updateLocation: () => dispatch(actions.updateLocation('HOME')),
-});
+const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Main);

@@ -1,18 +1,18 @@
 const express = require('express');
 const Index = require('../controllers/');
-const Players = require('../controllers/players/');
+const Users = require('../controllers/users');
 
-const Router = express.Router();
+const router = express.Router();
 /*
  * --- Index Route ---
  */
-Router.get('/', Index.loadIndex);
+router.get('/', Index.loadIndex);
 
 /*
  * --- API Routes ---
  */
 
-// Get all Players
-Router.get('/player/:playerID', Players.getAllPlayers);
+// Validate login
+router.post('/login/validate', Users.validateLogin);
 
-module.exports = Router;
+module.exports = router;

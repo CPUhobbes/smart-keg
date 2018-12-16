@@ -1,5 +1,11 @@
-import { Map } from 'immutable';
+import Immutable from 'immutable';
 
-export default Map({
+export default Immutable.fromJS({
   api: {},
+  userSession: {
+    id: '',
+    isLoggedIn: false,
+    failedLogin: false,
+    isAdmin: false,
+  },
 });
