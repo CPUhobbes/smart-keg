@@ -2,14 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
+import Keg from './Keg';
 import * as actions from '../actions/actions';
 
 class Main extends React.Component {
-  static propTypes = {
-    settings: PropTypes.instanceOf(Immutable.Iterable).isRequired,
-    updateLocation: PropTypes.func.isRequired,
-  };
-
   constructor(props) {
     super(props);
 
@@ -18,22 +14,27 @@ class Main extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const { updateLocation } = this.props;
-    updateLocation();
-  }
-
   render() {
-    const { settings } = this.props;
-    const { userName } = this.state;
-    if (settings) {
-      // console.log(settings.toJS());
-    }
+    const beer = Immutable.fromJS({
+      abv: '5.7',
+      category: 'Pale Ale',
+      description: 'Light citrus beer perfect for summer nights',
+      ibu: '73',
+      title: 'Magic in the Mountains',
+    });
+
+    const capacity = Immutable.fromJS({
+      start: 5,
+      remaining: 3.7,
+      percent: 0.74,
+    });
 
     return (
       <div>
-        <div>MAIN</div>
-        <div>{userName}</div>
+        <Keg
+          beer={beer}
+          capacity={capacity}
+        />
       </div>
     );
   }

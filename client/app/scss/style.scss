@@ -1,10 +1,15 @@
 @import 'components';
 
+body {
+	font-size: 100%;
+}
+
 .smart-keg {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	background-color: #000;
+	color: #FFF;
 	
 	.smart-keg__header {
 		border-bottom: #FFF solid 1px;
@@ -21,20 +26,63 @@
 				display: flex;
 			}
 
-			.smart-keg__header-spacer {
+			.smart-keg__header--spacer {
 				margin-right: auto;
-				width: 30px;
+				width: 2.5em;
 			}
 
-			.smart-keg__header-button {
+			.smart-keg__header--button {
 				margin-left: auto;
 			}
 
-			.smart-keg__header-title {
-				font-size: 36px;
+			.smart-keg__header--title {
+				font-size: 3em;
 				color: #FFF;
 				margin-right: initial;
 			}		
 		}
 	}
+
+	.smart-keg__keg {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.smart-keg__keg--capacity-container {
+			width: 100px;
+
+			.smart-keg__keg--capacity {
+				height: 200px;
+				position: relative;
+				background-color: #AAA;
+
+				.smart-keg__keg--capacity-remaining {
+					background-color: blue;
+					width: 100%;
+					position: absolute;
+					bottom: 0;
+				}
+			}
+			.smart-keg__keg--capacity-info {
+				text-align: center;
+			}
+		}
+
+		.smart-keg__keg--info {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			.smart-keg__keg-title {
+				font-size: 3em;
+			}
+			.smart-keg__keg-description{
+				font-size: 2em;
+			}
+			.smart-keg__keg-specs{
+				font-size: 1.5em;
+			}
+		}
+	}
+	
 }

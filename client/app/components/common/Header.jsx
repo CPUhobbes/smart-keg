@@ -5,16 +5,16 @@ import PropTypes from 'prop-types';
 class Header extends React.PureComponent {
   onSettingsClick = () => {
     const { history } = this.props;
-    history.push('/settings');
+    history.push('/login');
   }
 
   render() {
     return (
       <div className="smart-keg__header">
         <ul>
-          <li className="smart-keg__header-spacer" />
-          <li className="smart-keg__header-title">Smart Keg</li>
-          <li className="smart-keg__header-button">
+          <li className="smart-keg__header--spacer" />
+          <li className="smart-keg__header--title">Smart Keg</li>
+          <li className="smart-keg__header--button">
             <button
               onClick={this.onSettingsClick}
               className="settings"
