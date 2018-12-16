@@ -11,16 +11,18 @@ class Header extends React.PureComponent {
   render() {
     return (
       <div className="smart-keg__header">
-        <div />
-        <div className="smart-keg__header-title">Smart Keg</div>
-        <div>
-          <button
-            onClick={this.onSettingsClick}
-            className="smart-keg__header-button"
-          >
-           Settings
-          </button>
-        </div>
+        <ul>
+          <li className="smart-keg__header-spacer" />
+          <li className="smart-keg__header-title">Smart Keg</li>
+          <li className="smart-keg__header-button">
+            <button
+              onClick={this.onSettingsClick}
+              className="settings"
+            >
+            Settings
+            </button>
+          </li>
+        </ul>
       </div>
     );
   }
