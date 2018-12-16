@@ -19,7 +19,11 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'react', 'flow', 'stage-0'],
+            plugins: [
+              '@babel/plugin-transform-runtime',
+              '@babel/plugin-proposal-class-properties',
+            ],
+            presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
       },
@@ -34,11 +38,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -54,8 +54,6 @@ module.exports = {
       filename: 'index.html',
       hash: true,
     }),
-    new CopyWebpackPlugin([
-      { from: './public', to: './public' },
-    ]),
+    new CopyWebpackPlugin([{ from: './public', to: './public' }]),
   ],
 };
