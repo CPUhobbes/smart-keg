@@ -10,18 +10,20 @@ const http = require('http').Server(app);
 const md5 = require('md5');
 const Users = require('./server/models/Users');
 
+const MONGO_PORT = 27017;
+
 /**
  * --- Mongoose ---
  */
 
-// Mongoose promise
+// Mongoose promise override
 Mongoose.Promise = Promise;
 
-// mongoose.connect("mongodb://DBNAMEHERE");
 Mongoose.connect(
-  'mongodb://localhost/smart-keg',
+  `mongodb://mongo:${MONGO_PORT}/smart-keg`,
   { useMongoClient: true },
 );
+
 const db = Mongoose.connection;
 
 // Mongoose Error

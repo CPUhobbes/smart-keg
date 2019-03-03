@@ -1,0 +1,21 @@
+version: '3.4'
+services:
+  node:
+    build:
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    command: bash -c "npx nodemon --inspect=0.0.0.0 server.js --ignore client/"
+    volumes:
+      - .:/home/smart-keg/www:cached
+    stdin_open: true
+    ports:
+      - '9229:9229'
+      - '3000:3000'
+    links:
+      - mongo
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    logging:
+      driver: none

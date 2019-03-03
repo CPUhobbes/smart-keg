@@ -50,7 +50,7 @@ export function onClickLogin(id, password) {
       isAdmin: false,
     };
 
-    await fetch('http://127.0.0.1:3000/login/validate', request)
+    await fetch('http://localhost:3000/login/validate', request)
       .then(res => res.json())
       .then((data) => {
         if (data) {
